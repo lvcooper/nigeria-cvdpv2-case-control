@@ -1,2 +1,5 @@
 # nigeria-cvdpv2-case-control
-Matched case-control analysis of Nigeria cVDPV2 poliomyelitis 2016-2023
+
+Matched case-control analysis of Nigeria cVDPV2 poliomyelitis 2017-2023
+
+Code to reproduce the analysis in the paper "Effectiveness of poliovirus vaccines against circulating vaccine-derived type 2 poliomyelitis in Nigeria between 2017 and 2022: a case-control study" (Link: https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(23)00688-6/fulltext). Performs the following functions: i) harmonizing and cleaning surveillance data (acute flaccid paralysis [AFP] cases and healthy community control surveys), ii) matching cases and controls on location, age, and paralysis onset, iii) assigning valency of oral polio vaccine (OPV) doses based on SIA calendar and reported dose history, iv) conditional logistic regression to estimate per-dose OPV and inactivated poliovirus vaccine (IPV) effectiveness, v) tabulating and visualising results, vi) sensitivity analyses, vii) simulation to validate methods. The data required to run the code are not publicly available; please see the data sharing agreement in the linked publication. The simulation section will run without any underlying data.
