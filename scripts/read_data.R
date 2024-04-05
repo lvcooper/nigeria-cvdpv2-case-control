@@ -1,11 +1,11 @@
-# Read and combine AFP surviellance data from different years
+# Read and combine AFP surveilllance data from different years
 # Quality control check data
 path_to_data<-"data/"
 
 v<-NULL
 year<-17:22
 for(i in 1:length(year)){
-v[[i]]<-read_xlsx(paste0(path_to_data,"20",year[i]," AFP CV Data.xlsx"),col_types = "text")
+v[[i]]<-read.csv(paste0(path_to_data,"20",year[i]," AFP CV Data.csv"),colClasses = "character")
 v[[i]]$year<-as.numeric(paste0("20",year[i]))
 }
 
@@ -36,11 +36,13 @@ duplicates
 w<-rbind(w,y)
 
 # Lab result from POLIS
-z<-read.csv(paste0(path_to_data,"Nigeria POLIS AFP 2017 2022.csv"),sep=";")
+z<-read.csv(paste0(path_to_data,"Nigeria POLIS AFP 2017 2022.csv"))
 z$Year<-format(as.Date(z$Date.Onset,"%d/%m/%Y"),"%Y")
+z$EPID<-as.character(z$EPID)
 
 # Lab result from Nigeria AFP DB
 q<-read.csv(paste0(path_to_data,"2017_2022_AFP information_230223.csv"))
+q$EPID<-as.character(q$EPID)
 
 table(q$Year[q$Finalclassification=="cVDPV2"])
 table(q$Finalclassification=="cVDPV2")
@@ -70,7 +72,7 @@ tapply(q$class_nga=="Case",q$Year,sum,na.rm=T)
 tapply(ifelse(is.na(w$class_nga),w$class_polis,w$class_nga)=="Case",w$year,sum,na.rm=T)
 
 # Cases positive by contact
-r<-read_excel(paste0(path_to_data,"20230530 IndexFlaggedPositiveByContact in comment.xlsx"))
+r<-read.csv(paste0(path_to_data,"20230530 IndexFlaggedPositiveByContact in comment.csv"))
 w$pos_cont<-w$epid_num%in%r$EPID
 
 # Needed variables
